@@ -1,0 +1,11 @@
+finish
+1. get data from sensor
+2. add echart line chart
+
+
+
+to do list
+1. complete view of the page, x,y,z accelerate
+  option: 1. echart组件使用问题，自己封装达到每秒多次刷新
+  2. 尝试使用 react native echart option
+  3. 尝试使用 ref='myEchart'  this.refs.myEchart  myChart=Echart.init(this.refs.myEchart) myChart.setOption(option)
