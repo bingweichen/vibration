@@ -11,7 +11,7 @@ import Echarts from 'native-echarts';
 import { SensorManager } from 'NativeModules';
 const {height, width} = Dimensions.get('window');
 
-const myDatas={
+let myDatas={
   time:[],
   GyroscopeX:[],
   GyroscopeY:[],
@@ -66,6 +66,17 @@ export default class GyroscopeChart extends Component {
         })
       },5000
     )
+    this.uploadTimer=setInterval(
+      ()=>{
+        this.uploadData(myDatas);
+        myDatas={
+          time:[],
+          GyroscopeX:[],
+          GyroscopeY:[],
+          GyroscopeZ:[],
+        };
+      },10000
+    )
   }
 
   componentDidMount() {
@@ -73,7 +84,27 @@ export default class GyroscopeChart extends Component {
   componentWillUnmount(){
     SensorManager.stopGyroscope();
     this.timer && clearInterval(this.timer);
-
+    this.uploadTimer && clearInterval(this.uploadTimer);
+  }
+  uploadData(jsonData){
+    console.log("开始上传");
+    console.log(jsonData);
+    fetch("https://api.leancloud.cn/1.1/classes/GyroscopeChart",{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        "x-lc-id": "VVYGHWe0OYD0VkvgamLPta9M-gzGzoHsz",
+        "x-lc-key": "KD9rkx4I9C73ef2mSTfOAk12",
+      },
+      body: JSON.stringify(jsonData),
+    })
+      .then((response) => response.json())
+      .then((json)=> {
+        console.log(json);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   getOption(data){
     let time=data.time.map(

@@ -11,7 +11,8 @@ import Echarts from 'native-echarts';
 import { SensorManager } from 'NativeModules';
 const {height, width} = Dimensions.get('window');
 
-const myDatas={
+const uploadDatas=[];
+let myDatas={
   time:[],
   AccelerometerX:[],
   AccelerometerY:[],
@@ -35,6 +36,17 @@ export default class AccelerometerChart extends Component {
     //get value from sensor
     SensorManager.startAccelerometer(1000);
     DeviceEventEmitter.addListener('Accelerometer', (data) => {
+      //style1
+      // let myNow = new Date();
+      // let uploadData={
+      //   'timeStamp': myNow,
+      //   'accelerometerX': data.x,
+      //   'accelerometerY': data.y,
+      //   'accelerometerZ': data.z,
+      // };
+      // uploadDatas.push(uploadData);
+
+      //style2
       let now=new Date();
       myDatas.time.push(now);
       myDatas.AccelerometerX.push(data.x);
@@ -45,6 +57,7 @@ export default class AccelerometerChart extends Component {
       myRenderData.AccelerometerX.push(data.x);
       myRenderData.AccelerometerY.push(data.y);
       myRenderData.AccelerometerZ.push(data.z);
+
       if(myRenderData.time.length>12){
         myRenderData.time.shift();
         myRenderData.AccelerometerX.shift();
@@ -65,15 +78,45 @@ export default class AccelerometerChart extends Component {
           option:this.state.option
         })
       },5000
+    );
+    this.uploadTimer=setInterval(
+      ()=>{
+        this.uploadData(myDatas);
+        myDatas={
+          time:[],
+          AccelerometerX:[],
+          AccelerometerY:[],
+          AccelerometerZ:[],
+        };
+      },10000
     )
   }
-
   componentDidMount() {
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     SensorManager.stopAccelerometer();
     this.timer && clearInterval(this.timer);
-
+    this.uploadTimer && clearInterval(this.uploadTimer);
+  }
+  uploadData(jsonData){
+    console.log("开始上传");
+    console.log(jsonData);
+    fetch("https://api.leancloud.cn/1.1/classes/Accelerometer",{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        "x-lc-id": "VVYGHWe0OYD0VkvgamLPta9M-gzGzoHsz",
+        "x-lc-key": "KD9rkx4I9C73ef2mSTfOAk12",
+      },
+      body: JSON.stringify(jsonData),
+    })
+      .then((response) => response.json())
+      .then((json)=> {
+        console.log(json);
+      })
+      .catch((error) => {
+      console.log(error);
+    });
   }
   getOption(data){
     let time=data.time.map(
