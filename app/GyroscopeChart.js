@@ -23,7 +23,6 @@ const myRenderData={
   GyroscopeY:[],
   GyroscopeZ:[],
 };
-// const myDatas=[];
 export default class GyroscopeChart extends Component {
   constructor(props){
     super(props);
@@ -65,7 +64,7 @@ export default class GyroscopeChart extends Component {
           option:this.state.option
         })
       },5000
-    )
+    );
     this.uploadTimer=setInterval(
       ()=>{
         this.uploadData(myDatas);
@@ -78,7 +77,6 @@ export default class GyroscopeChart extends Component {
       },10000
     )
   }
-
   componentDidMount() {
   }
   componentWillUnmount(){

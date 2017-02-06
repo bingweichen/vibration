@@ -104,7 +104,6 @@ export default class myChart extends Component {
         hoverAnimation: false,
         data: dataA,
         animation: false,
-
       }]
     };
     return option;

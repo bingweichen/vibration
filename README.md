@@ -35,8 +35,32 @@
 
 1. AccelerometerChart
 2. GyroscopeChart
+3. lean cloud
 
 ### to do list
 
 1. 数据格式
 2. 数据上传方式
+
+### 数据接收方式
+
+每10s上传一次数据
+
+上传时间点储存在 createdAt 
+
+记录时间的储存在 time
+
+```
+curl -X GET \
+  -H "X-LC-Id: VVYGHWe0OYD0VkvgamLPta9M-gzGzoHsz" \
+  -H "X-LC-Key: KD9rkx4I9C73ef2mSTfOAk12" \
+  -H "Content-Type: application/json" \
+  https://api.leancloud.cn/1.1/classes/Post/Accelerometer
+  
+curl -X GET \
+  -H "X-LC-Id: VVYGHWe0OYD0VkvgamLPta9M-gzGzoHsz" \
+  -H "X-LC-Key: KD9rkx4I9C73ef2mSTfOAk12" \
+  -H "Content-Type: application/json" \
+  https://api.leancloud.cn/1.1/classes/Post/GyroscopeChart
+```
+

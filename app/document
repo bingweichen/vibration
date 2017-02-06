@@ -1,7 +1,7 @@
 finish
 1. get data from sensor
 2. add echart line chart
-
+3. add leancloud server
 
 
 to do list
@@ -9,3 +9,21 @@ to do list
   option: 1. echart组件使用问题，自己封装达到每秒多次刷新
   2. 尝试使用 react native echart option
   3. 尝试使用 ref='myEchart'  this.refs.myEchart  myChart=Echart.init(this.refs.myEchart) myChart.setOption(option)
+
+https://leancloud.cn/dashboard/login.html#/signin
+bingwei.chen11@gmail.com
+Vibration1234567890
+
+curl -X GET \
+  -H "X-LC-Id: VVYGHWe0OYD0VkvgamLPta9M-gzGzoHsz" \
+  -H "X-LC-Key: KD9rkx4I9C73ef2mSTfOAk12" \
+  -H "Content-Type: application/json" \
+  https://api.leancloud.cn/1.1/classes/Post/Accelerometer
+
+curl -X GET \
+  -H "X-LC-Id: VVYGHWe0OYD0VkvgamLPta9M-gzGzoHsz" \
+  -H "X-LC-Key: KD9rkx4I9C73ef2mSTfOAk12" \
+  -H "Content-Type: application/json" \
+  https://api.leancloud.cn/1.1/classes/Post/GyroscopeChart
+
+
