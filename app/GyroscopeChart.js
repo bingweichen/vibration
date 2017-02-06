@@ -32,7 +32,7 @@ export default class GyroscopeChart extends Component {
   }
   componentWillMount(){
     //get value from sensor
-    SensorManager.startGyroscope(1000);
+    SensorManager.startGyroscope(100);
     DeviceEventEmitter.addListener('Gyroscope', (data) => {
       let now=new Date();
       myDatas.time.push(now);

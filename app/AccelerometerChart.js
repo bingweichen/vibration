@@ -34,7 +34,7 @@ export default class AccelerometerChart extends Component {
   }
   componentWillMount(){
     //get value from sensor
-    SensorManager.startAccelerometer(1000);
+    SensorManager.startAccelerometer(100);
     DeviceEventEmitter.addListener('Accelerometer', (data) => {
       //style1
       // let myNow = new Date();

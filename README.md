@@ -31,16 +31,23 @@
 2. 1. 使用https post上传手机端数据，写服务器端API，写mongodb数据库
    2. 使用leanclould数据库，调用其RestfulAPI或SDK（建议）
 
-### 已完成
-
-1. AccelerometerChart
-2. GyroscopeChart
-3. lean cloud
-
 ### to do list
 
 1. 数据格式
 2. 数据上传方式
+
+
+
+
+
+### 已完成
+
+1. AccelerometerChart
+2. GyroscopeChart
+3. leancloud
+4. sample  0.1s (10Hz)
+5. render chart 5s 
+6. upload data 10s
 
 ### 数据接收方式
 
