@@ -9,10 +9,11 @@
 ```
 npm install native-base --save
 npm i react-native-router-flux --save
+npm i react-native-communications --save
 react-native link
 ```
 
-正常安装过程 需更新正确的package.json
+正常安装过程 需更新正确的package.json (已更新可先尝试)
 
 ```
 npm install
