@@ -13,10 +13,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import FirstPage from './app/FirstPage';
-export default class vibration extends Component {
-  render() {
-    return <FirstPage/>
-  }
-}
-AppRegistry.registerComponent('vibration', () => vibration);
+import App from './app';
+
+AppRegistry.registerComponent('vibration', () => App);

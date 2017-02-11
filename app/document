@@ -18,12 +18,12 @@ curl -X GET \
   -H "X-LC-Id: VVYGHWe0OYD0VkvgamLPta9M-gzGzoHsz" \
   -H "X-LC-Key: KD9rkx4I9C73ef2mSTfOAk12" \
   -H "Content-Type: application/json" \
-  https://api.leancloud.cn/1.1/classes/Post/Accelerometer
+  https://api.leancloud.cn/1.1/classes/Accelerometer
 
 curl -X GET \
   -H "X-LC-Id: VVYGHWe0OYD0VkvgamLPta9M-gzGzoHsz" \
   -H "X-LC-Key: KD9rkx4I9C73ef2mSTfOAk12" \
   -H "Content-Type: application/json" \
-  https://api.leancloud.cn/1.1/classes/Post/GyroscopeChart
+  https://api.leancloud.cn/1.1/classes/GyroscopeChart
 
 
