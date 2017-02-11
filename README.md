@@ -1,20 +1,62 @@
 # vibration
 
+### 使用说明
+
+添加 native base UI 界面，react native flux 框架
+
+由于native base官方bug, 导致项目package json被覆盖，新安装的包未被记录在文档中，可能需要手动安装
+
+```
+npm install native-base --save
+npm i react-native-router-flux --save
+react-native link
+```
+
+正常安装过程 需更新正确的package.json
+
+```
+npm install
+react-native link
+```
+
+老版 package json
+
+{
+  "name": "vibration",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "native-echarts": "^0.3.0",
+    "react": "~15.4.0-rc.4",
+    "react-native": "0.40.0",
+    "react-native-motion-manager": "0.0.6",
+    "react-native-sensor-manager": "^0.1.10"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-jest": "18.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "eslint": "^3.14.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "jest": "18.1.0",
+    "react-test-renderer": "~15.4.0-rc.4"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
+
 ### 问题
 
-1. ​
-
-
 ### 解决方案
-
-1. 1. 重新封装 echart for react native，有难度 
-   2. 更换 d3 react native时间折现图
-2. 1. 使用https post上传手机端数据，写服务器端API，写mongodb数据库
-   2. 使用leanclould数据库，调用其RestfulAPI或SDK（建议）
-
-
-
-
 
 
 ### 已完成
@@ -23,8 +65,14 @@
 2. GyroscopeChart
 3. leancloud
 4. sample  0.1s (10Hz)
-5. render chart 5s 
+5. render chart 10s 
 6. upload data 10s
+
+
+
+1. 欢迎界面
+2. 开始sample, 结束sample，开始上传，结束上传 按钮
+3. 提示上传时间点，上传数据采集个数
 
 ### to do list
 
