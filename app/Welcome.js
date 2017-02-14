@@ -13,34 +13,13 @@ import {
 } from 'react-native';
 import { Container, Header, Title, Button, Left, Right, Body, Icon, Content } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import Communications from 'react-native-communications';
 
 const styles = StyleSheet.create({
     contentContainer: {
         paddingVertical: 20
     }
 });
-let json=[
-    {
-        time:[1,2,3],
-        AccelerometerX:[1,2,3],
-        AccelerometerY:[1,2,3],
-        AccelerometerZ:[1,2,3],
-    },
-    {
-        time:[1,2,3],
-        AccelerometerX:[1,2,3],
-        AccelerometerY:[1,2,3],
-        AccelerometerZ:[1,2,3],
-    },
-    {
-        time:[1,2,3],
-        AccelerometerX:[1,2,3],
-        AccelerometerY:[1,2,3],
-        AccelerometerZ:[1,2,3],
-    },
 
-];
 export default class Welcome extends Component {
     onpressEmail(){
         Communications.email(['bingweichenapply@163.com'],null,null,'My Subject',JSON.stringify(json));
@@ -67,10 +46,6 @@ export default class Welcome extends Component {
                     <Text>
                         使用说明:
                     </Text>
-
-                    <Button transparent onPress={()=>this.onpressEmail()}>
-                        <Text>email</Text>
-                    </Button>
                 </Content>
             </Container>
         );

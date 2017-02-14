@@ -20,10 +20,12 @@ import {
 import Echarts from 'native-echarts';
 import { SensorManager } from 'NativeModules';
 import { Container, Header, Title, Button, Left, Right, Body, Icon,Content } from 'native-base';
+import Communications from 'react-native-communications';
 
 const {height, width} = Dimensions.get('window');
 
-let uploadDatas=[];
+let emailDatas = [];
+let uploadDatas = [];
 let myDatas={
     time:[],
     AccelerometerX:[],
@@ -125,7 +127,7 @@ export default class AccelerometerChart extends Component {
                 'accelerometerZ': data.z,
             };
             uploadDatas.push(uploadData);
-
+            emailDatas.push(uploadData);
             //style2
             let now=new Date();
             myDatas.time.push(now);
@@ -287,6 +289,9 @@ export default class AccelerometerChart extends Component {
             });
 
     }
+    onpressEmail(){
+        Communications.email(['bingweichenapply@163.com'],null,null,'My Subject',JSON.stringify(emailDatas));
+    }
     render() {
         return (
             <View>
@@ -302,11 +307,14 @@ export default class AccelerometerChart extends Component {
                     </Text>
                 </View>
                 <Echarts refs='lineChart' option={this.state.option} width={width} height={420} />
-                <View>
+                <View style={{flexDirection:"row"}}>
                     <Button light onPress={() => this.onPressUpload()}>
                         <Text>
                             上传数据
                         </Text>
+                    </Button>
+                    <Button light onPress={()=>this.onpressEmail()}>
+                        <Text>数据发送邮件</Text>
                     </Button>
                 </View>
             </View>
