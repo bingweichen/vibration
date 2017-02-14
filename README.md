@@ -1,5 +1,13 @@
 # vibration
 
+### APP使用
+
+顶部开始上传 leancloud
+
+底部上传按钮  firebase 每次按 上传到firebase数据库
+
+ 
+
 ### 使用说明
 
 添加 native base UI 界面，react native flux 框架
