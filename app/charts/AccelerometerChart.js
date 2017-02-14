@@ -19,9 +19,11 @@ import {
 } from 'react-native';
 import Echarts from 'native-echarts';
 import { SensorManager } from 'NativeModules';
+import { Container, Header, Title, Button, Left, Right, Body, Icon,Content } from 'native-base';
+
 const {height, width} = Dimensions.get('window');
 
-const uploadDatas=[];
+let uploadDatas=[];
 let myDatas={
     time:[],
     AccelerometerX:[],
@@ -115,14 +117,14 @@ export default class AccelerometerChart extends Component {
         SensorManager.startAccelerometer(100);
         this.dtimer=DeviceEventEmitter.addListener('Accelerometer', (data) => {
             //style1
-            // let myNow = new Date();
-            // let uploadData={
-            //   'timeStamp': myNow,
-            //   'accelerometerX': data.x,
-            //   'accelerometerY': data.y,
-            //   'accelerometerZ': data.z,
-            // };
-            // uploadDatas.push(uploadData);
+            let myNow = new Date();
+            let uploadData={
+                'timeStamp': myNow,
+                'accelerometerX': data.x,
+                'accelerometerY': data.y,
+                'accelerometerZ': data.z,
+            };
+            uploadDatas.push(uploadData);
 
             //style2
             let now=new Date();
@@ -250,12 +252,40 @@ export default class AccelerometerChart extends Component {
         return option;
     }
     componentWillUnmount() {
-        this.dtimer.remove();
-
-        console.log("unmount");
+        this.dtimer && this.dtimer.remove();
         SensorManager.stopAccelerometer();
         this.timer && clearInterval(this.timer);
         this.uploadTimer && clearInterval(this.uploadTimer);
+    }
+    onPressUpload(){
+        console.log("kaishi");
+        let myNow = new Date();
+        let jsonData = {
+            "data":uploadDatas,
+            "timestamp":myNow
+        };
+
+
+        fetch("https://vibration-7c6e3.firebaseio.com/data/.json",{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body: JSON.stringify(jsonData),
+        })
+            .then((response) => response.json())
+            .then((json)=> {
+                console.log("个数",jsonData.data.length);
+                // console.log("上传时间",jsonData.timestamp);
+                Alert.alert("上传时间: "+jsonData.timestamp,"个数"+jsonData.data.length);
+                uploadDatas=[];
+                // console.log(json);
+                // Alert.alert("上传时间: "+json.createdAt,"个数"+jsonData.time.length)
+            })
+            .catch((error) => {
+                // console.log(error);
+            });
+
     }
     render() {
         return (
@@ -272,6 +302,13 @@ export default class AccelerometerChart extends Component {
                     </Text>
                 </View>
                 <Echarts refs='lineChart' option={this.state.option} width={width} height={420} />
+                <View>
+                    <Button light onPress={() => this.onPressUpload()}>
+                        <Text>
+                            上传数据
+                        </Text>
+                    </Button>
+                </View>
             </View>
         );
     }
